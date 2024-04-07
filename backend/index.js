@@ -1,6 +1,7 @@
 import express from 'express';
 import sqlite3 from 'sqlite3';
 import fetch from 'node-fetch';
+import cors from 'cors'; 
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -8,6 +9,9 @@ const PORT = process.env.PORT || 5000;
 const db = new sqlite3.Database('mydatabase.db');
 
 app.use(express.json());
+
+
+app.use(cors());
 
 db.serialize(() => {
   db.run(`CREATE TABLE IF NOT EXISTS products (
